@@ -17,6 +17,7 @@ function Guess({ handleGuessList, gameStatus }) {
           id="guess-input"
           type="text"
           value={guess}
+          required={true}
           disabled={gameStatus === "success" || gameStatus === "fail"}
           pattern="\w{5,5}"
           onChange={(e) => setGuess(e.target.value?.toUpperCase())}
