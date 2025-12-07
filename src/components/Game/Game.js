@@ -31,7 +31,7 @@ function Game() {
     if (guessList.length + 1 <= NUM_OF_GUESSES_ALLOWED) {
       const nextGuessList = [...guessList];
       const validation = checkGuess(guess, answer);
-      nextGuessList.push({ id: crypto.randomUUID(), guess, validation });
+      nextGuessList.push({ guess, validation });
       setGuessList(nextGuessList);
 
       if (guess === answer) {
