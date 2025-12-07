@@ -9,13 +9,23 @@ import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 import GameOverBanner from "../GameOverBanner/GameOverBanner";
 
 // Pick a random word on every pageload.
-const answer = sample(WORDS);
+// const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
 
 function Game() {
+  const [answer, setAnswer] = React.useState(() => sample(WORDS));
   const [guessList, setGuessList] = React.useState([]);
   const [gameStatus, setGameStatus] = React.useState("idle");
+
+  React.useEffect(() => {
+    console.info({ answer });
+  }, [answer]);
+
+  const restartGame = () => {
+    setGuessList([]);
+    setGameStatus("idle");
+    setAnswer(sample(WORDS));
+  };
 
   const handleGuessList = (guess) => {
     if (guessList.length + 1 <= NUM_OF_GUESSES_ALLOWED) {
@@ -39,6 +49,7 @@ function Game() {
         gameStatus={gameStatus}
         guesses={guessList.length}
         answer={answer}
+        restartGame={restartGame}
       />
     </>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 
-function SuccessBanner({ guesses }) {
+function SuccessBanner({ guesses, restartButton }) {
   return (
     <div className="happy banner">
       <p>
@@ -10,6 +10,7 @@ function SuccessBanner({ guesses }) {
         </strong>
         .
       </p>
+      {restartButton}
     </div>
   );
 }
